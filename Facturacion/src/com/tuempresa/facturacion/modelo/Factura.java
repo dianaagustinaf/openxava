@@ -2,6 +2,7 @@ package com.tuempresa.facturacion.modelo;
 
 
 import java.time.*;
+import java.util.*;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -49,5 +50,12 @@ public class Factura {
  
     @Stereotype("MEMO")
     String observaciones;
+    
+    @ManyToOne(fetch=FetchType.LAZY, optional=false) // El cliente es obligatorio
+    Cliente cliente;
+    
+    @ElementCollection
+    @ListProperties("producto.numero, producto.descripcion, cantidad")
+    Collection<Detalle> detalles;
  
 }
