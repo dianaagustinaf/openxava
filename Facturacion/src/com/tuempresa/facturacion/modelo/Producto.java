@@ -1,5 +1,7 @@
 package com.tuempresa.facturacion.modelo;
 
+import java.math.*;
+
 import javax.persistence.*;
 
 import org.openxava.annotations.*;
@@ -15,6 +17,15 @@ public class Producto {
 	@Column(length=50) @Required
 	String descripcion;
 	
+	@Stereotype("DINERO") // La propiedad precio se usa para almacenar dinero
+	BigDecimal precio; // BigDecimal se suele usar para dinero
+	 
+	@Stereotype("GALERIA_IMAGENES") // Una galería de fotos completa está disponible
+	@Column(length=32) // La cadena de 32 de longitud es para almacenar la clave de la galería
+	String fotos;
+	 
+	@Stereotype("TEXTO_GRANDE") // Esto es para un texto grande, se usará un área de texto o equivalente
+	String observaciones;
 	
 	@ManyToOne( // La referencia se almacena como una relación en la base de datos
 	        fetch=FetchType.LAZY, // La referencia se carga bajo demanda
