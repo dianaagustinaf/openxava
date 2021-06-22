@@ -17,5 +17,9 @@ public class Cliente {
 	@Column(length=50)
 	@Required 
 	String nombre;
+	
+    @Embedded // Así para referenciar a una clase incrustable
+    @NoFrame // Con @NoFrame no se muestra marco para direccion
+    Direccion direccion; // Una referencia Java convencional
 
 }
