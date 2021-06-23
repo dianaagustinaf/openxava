@@ -1,0 +1,16 @@
+/*C3*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+create table Facturacion.Autor (oid varchar(32) not null, nombre varchar(50), primary key (oid))
+alter table FACTURACION.PRODUCTO add column autor_oid varchar(32)
+alter table Facturacion.Producto add constraint FKmtkejrnklbkimttu99b9jqufw foreign key (autor_oid) references Facturacion.Autor
+SET SCHEMA FACTURACION
+INSERT INTO CATEGORIA VALUES('402881b67a39f6be017a39fa7df20000','Libro')
+COMMIT
+INSERT INTO AUTOR VALUES('402881b67a39f6be017a39fab8ac0001','Saer')
+COMMIT
+INSERT INTO PRODUCTO VALUES(18,'La vuelta completa',NULL,'Autor argentino.',40.00,'402881b67a39f6be017a39fa7df20000','402881b67a39f6be017a39fab8ac0001')
+COMMIT
+INSERT INTO FACTURA VALUES('402881b67a39f6be017a39fc36190002',2021,'2021-06-23',1,'',15)
+INSERT INTO FACTURA_DETALLES VALUES('402881b67a39f6be017a39fc36190002',1,18)
+COMMIT
